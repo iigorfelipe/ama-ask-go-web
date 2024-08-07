@@ -9,7 +9,7 @@ export const CreateRoom = () => {
   function handleCreateRoom(data: FormData) {
     const theme = data.get("theme")?.toString()
     console.log('theme: ', theme);
-    navigate('/room/1234grgrg')
+    navigate('/room/1234dddddddddddddddddddddddddddwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgrgrg')
   }
 
   return (
