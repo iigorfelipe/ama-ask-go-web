@@ -1,21 +1,30 @@
 import { useParams } from 'react-router-dom';
 
 import amaLogo from '../assets/ama-logo.svg';
-import { ArrowRight, ArrowUp, Share2 } from 'lucide-react';
+import { ArrowRight, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { Message } from '../components/message';
+
+const messagesFake = [
+  'O que é GoLang e quais são suas principais vantagens em comparação com outras linguagens de programação como Python, Java ou C++?',
+  'Como funcionam as goroutines em GoLang e por que elas são importantes para a concorrência e paralelismo?',
+  'Como fazer a depuração de programas GoLang e quais ferramentas são recomendadas para isso?',
+  'Quais são os primeiros passos para começar a programar em GoLang, incluindo a instalação do ambiente de desenvolvimento, configuração e execução do primeiro programa?',
+  'Como funciona o gerenciamento de memória em GoLang, incluindo a coleta de lixo (garbage collection)? Quais são as implicações de desempenho e como otimizar o uso de memória em programas Go? Quais são as diferenças entre alocação na stack e no heap, e como essas diferenças afetam a eficiência do programa?',
+];
 
 export const Room = () => {
   const { roomId } = useParams();
 
   function handleShareRoom() {
-    const url = window.location.href.toString()
+    const url = window.location.href.toString();
 
     if (navigator.share !== undefined && navigator.canShare()) {
-      navigator.share({ url })
+      navigator.share({ url });
     } else {
-      navigator.clipboard.writeText(url)
+      navigator.clipboard.writeText(url);
 
-      toast.info('The room URL was copied to your clipboard')
+      toast.info('The room URL was copied to your clipboard');
     }
   }
 
@@ -59,29 +68,9 @@ export const Room = () => {
       </form>
 
       <ol className="list-decimal list-outside px-3 space-y-8">
-        <li className="ml-4 leading-relaxed text-zinc-100">
-          O que é GoLang e quais são suas principais vantagens em comparação com
-          outras linguagens de programação como Python, Java ou C++?
-          <button
-            type="button"
-            className="mt-3 flex items-center gap-2 text-orange-400 text-sm font-medium hover:text-orange-500"
-          >
-            <ArrowUp className="size-4" />
-            Curtir pergunta (182)
-          </button>
-        </li>
-
-        <li className="ml-4 leading-relaxed text-zinc-100">
-          Como funcionam as goroutines em GoLang e por que elas são importantes
-          para a concorrência e paralelismo?
-          <button
-            type="button"
-            className="mt-3 flex items-center gap-2 text-zinc-400 text-sm font-medium hover:text-zinc-300"
-          >
-            <ArrowUp className="size-4" />
-            Curtir pergunta (173)
-          </button>
-        </li>
+        {messagesFake.map((message, index) => (
+          <Message key={message} text={message} amountOfReactions={index + 12} answered={index % 2 === 0} />
+        ))}
       </ol>
     </div>
   );
