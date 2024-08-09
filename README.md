@@ -7,6 +7,9 @@
 https://github.com/user-attachments/assets/91ab4bf8-de6c-4bc9-9de7-2402e1d1601e
 
 
+## 📄 Sobre o Projeto: AMA | Any Ask Anything
+Plataforma interativa de perguntas e respostas em tempo real. O backend, desenvolvido em Go com Websockets e PostgreSQL, suporta a criação de salas virtuais, enquanto o frontend em React proporciona uma interface dinâmica onde os participantes podem fazer, reagir e ordenar perguntas, oferecendo uma experiência fluida e envolvente.
+
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -34,34 +37,34 @@ https://github.com/user-attachments/assets/91ab4bf8-de6c-4bc9-9de7-2402e1d1601e
 ⚠️ __Este projeto utiliza ` React 19`, sendo necessário usar a flag `-f` para forçar a instalação de pacotes que suportam apenas versões anteriores.__
 
 
+1. Clone o repositório:
 ```bash
 git clone git@github.com:iigorfelipe/ama-ask-react-web.git
 ```
 
+2. Entre na pasta do projeto:
 ```bash
-cd ama-ask-go-webr
+cd ama-ask-react-web
 ```
 
+3. Instale as dependências com a flag `-f`:
 ```bash
-npm install
+npm install -f
 ```
-- __ou:__ `npm install -f`
 
+4. Renomeie o arquivo `env.example` para `.env`:
+```bash
+mv env.example .env
+```
+
+5. Execute o projeto:
 ```bash
 npm run dev
 ```
 
-⚠️ Este comando executará apenas o frontend (web). Para se conectar ao servidor, siga os passos abaixo:
+⚠️ Os comandos acima executará apenas o frontend (web). Para se conectar ao servidor, siga os passos do repositório abaixo:
 
-Na raiz do projeto, crie um arquivo .env e adicione o seguinte conteúdo:
-
-```
-VITE_APP_API_URL="http://localhost:8080/api"
-```
-
-- Agora, acesse o repositório do servidor e siga as instruções fornecidas.
-
-- Após concluir as instruções acima, você já pode testar o projeto. Execute `npm run dev` novamente caso sua aplicação web ainda não esteja em execução.
+- [Repositório do servidor](https://github.com/iigorfelipe/ama-ask-go-server)
 
 ## Autor
 
