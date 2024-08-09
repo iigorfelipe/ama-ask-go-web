@@ -13,7 +13,7 @@ type WebHookMessage =
   | { kind: 'message_reaction_decreased'; value: { id: string; count: number } };
 
 export function useMessagesWebsockets({ roomId }: UseMessagesWebsockets) {
-  const querryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const ws = new WebSocket(`ws://localhost:8080/subscribe/${roomId}`);
@@ -31,7 +31,7 @@ export function useMessagesWebsockets({ roomId }: UseMessagesWebsockets) {
 
       switch (data.kind) {
         case 'message_created':
-          querryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
+          queryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
             return {
               messages: [
                 ...(state?.messages ?? []),
@@ -46,7 +46,7 @@ export function useMessagesWebsockets({ roomId }: UseMessagesWebsockets) {
           });
           break;
         case 'message_answered':
-          querryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
+          queryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
             if (!state) {
               return undefined;
             }
@@ -64,7 +64,7 @@ export function useMessagesWebsockets({ roomId }: UseMessagesWebsockets) {
           break;
         case 'message_reaction_increased':
         case 'message_reaction_decreased':
-          querryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
+          queryClient.setQueryData<GetRoomMessageResponse>(['messages', roomId], (state) => {
             if (!state) {
               return undefined;
             }
@@ -86,5 +86,5 @@ export function useMessagesWebsockets({ roomId }: UseMessagesWebsockets) {
     return () => {
       ws.close();
     };
-  }, [roomId, querryClient]);
+  }, [roomId, queryClient]);
 }
